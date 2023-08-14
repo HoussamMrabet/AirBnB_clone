@@ -3,21 +3,18 @@ import cmd
 
 
 class HBNBCommand(cmd.Cmd):
-    prompt = "(hbnb)"
+    prompt = "(hbnb) "
 
-    def do_quit(self, command):
-        exit()
-
-    def help_quit(self):
-        print("Exits the program with formatting")
+    def do_quit(self, arg):
+        """Exit the program"""
+        return True
 
     def do_EOF(self, arg):
-        exit()
-
-    def help_EOF(self):
-        print("Exits the program without formatting")
+        """Exit the program"""
+        return True
 
     def emptyline(self):
+        """Do nothing when an empty line is entered"""
         pass
 
 
