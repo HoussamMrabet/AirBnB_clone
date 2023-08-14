@@ -3,7 +3,7 @@ import cmd
 
 
 class HBNBCommand(cmd.Cmd):
-    prompt = '(hbnb)'
+    prompt = "(hbnb)"
 
     def do_quit(self, command):
         exit()
@@ -19,6 +19,7 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         pass
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
