@@ -4,12 +4,16 @@ from datetime import datetime
 
 class BaseModel:
     #instance attribute
-    def __init__(self, my_number=None, name=None):
-        self.my_number = my_number
-        self.name = name
-        self.updated_at = datetime.now()
-        self.id = uuid.uuid4()
-        self.created_at = datetime.now()
+    def __init__(self, **kwargs):
+        if kwargs:
+            for key, value in kwargs.items():
+                setattr(self, key, value)
+        else:
+            self.my_number = None
+            self.name = None
+            self.updated_at = datetime.now()
+            self.id = uuid.uuid4()
+            self.created_at = datetime.now()
 
     #instance method
     
