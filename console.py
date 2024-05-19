@@ -1,21 +1,30 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
+"""basic console program - airbnb clone"""
 import cmd
 
-class hbnb(cmd.Cmd):
-    prompt = '(hbnb) '
-        
+
+class HBNBCommand(cmd.Cmd):
+    prompt = "(hbnb) "
+
+    def do_quit(self, args):
+        """
+        Quit command to exit the program
+        """
+        return True
+
+    def do_EOF(self, args):
+        """
+        Exit the program on EOF (Ctrl+D)
+        """
+        print()  # Print a newline before exiting
+        return True
+
     def emptyline(self):
-        """Do nothing on empty input line"""
+        """
+        Do nothing on an empty line
+        """
         pass
 
-    def do_quit(self, arg):
-        """Exit the application"""
-        return True
-    
-    def do_EOF(self, arg):
-        """get the end of file"""
-        print("")
-        return True
 
-if __name__ == '__main__':
-    hbnb().cmdloop()
+if __name__ == "__main__":
+    HBNBCommand().cmdloop()
