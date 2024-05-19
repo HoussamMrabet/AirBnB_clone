@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import uuid
 from datetime import datetime
-import models
+import models.engine
 
 class BaseModel:
     #instance attribut
@@ -19,12 +19,12 @@ class BaseModel:
             self.updated_at = datetime.now()
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
-        models.storage.new(self)
+        models.engine.storage.new(self)
 
     #instance method
     def to_dict(self):
         instance_dict = self.__dict__.copy()
-        # instance_dict["__class__"] = self.__class__.__name__
+        instance_dict["__class__"] = self.__class__.__name__
         instance_dict['created_at'] = self.created_at.isoformat()
         instance_dict['updated_at'] = self.updated_at.isoformat()
         
@@ -32,7 +32,7 @@ class BaseModel:
     
     def save(self):
         self.updated_at = datetime.now()
-        models.storage.save()
+        models.engine.storage.save()
     
     def __str__(self):
         instance_dict = self.to_dict()
