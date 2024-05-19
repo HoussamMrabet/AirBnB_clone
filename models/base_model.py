@@ -1,35 +1,40 @@
 #!/usr/bin/python3
 import uuid
 from datetime import datetime
+import models
 
 class BaseModel:
-    #instance attribute
-    def __init__(self, **kwargs):
+    #instance attribut
+    def __init__(self, *args, **kwargs):
+        time_format = "%Y-%m-%dT%H:%M:%S.%f"
         if kwargs:
             for key, value in kwargs.items():
-                setattr(self, key, value)
+                if key == "__class__":
+                    continue
+                elif key == 'created_at' or key == 'updated_at':
+                    setattr(self, key, datetime.strptime(value, time_format))
+                else:
+                    setattr(self, key, value)
         else:
-            self.my_number = None
-            self.name = None
             self.updated_at = datetime.now()
-            self.id = uuid.uuid4()
+            self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
+        models.storage.new(self)
 
     #instance method
-    
     def to_dict(self):
         instance_dict = self.__dict__.copy()
-        
-        if self.created_at:
-            instance_dict['created_at'] = self.created_at.isoformat()
-        if self.updated_at:
-            instance_dict['updated_at'] = self.updated_at.isoformat()
+        # instance_dict["__class__"] = self.__class__.__name__
+        instance_dict['created_at'] = self.created_at.isoformat()
+        instance_dict['updated_at'] = self.updated_at.isoformat()
         
         return instance_dict
     
     def save(self):
         self.updated_at = datetime.now()
+        models.storage.save()
     
     def __str__(self):
-        return f"[{self.__class__.__name__}] ({self.id}) {self.to_dict()}"
+        instance_dict = self.to_dict()
+        return f"[{self.__class__.__name__}] ({instance_dict['id']}) {instance_dict}"
 
