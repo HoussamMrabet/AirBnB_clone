@@ -3,7 +3,8 @@
 Defines the User class.
 """
 from models.base_model import BaseModel
-class user(BaseModel):
+
+class User(BaseModel):
     """Represent a User
     Attributes:
         email (str): user email
