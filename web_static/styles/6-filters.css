@@ -84,4 +84,5 @@
 .locations .popover:hover .popover,
 .amenities .popover:hover .popover {
     display: block;
+    z-index: 100;
 }
