@@ -1,17 +1,19 @@
 .places {
+    margin-top: 2rem;
     display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
+
 .places h1 {
+    display: block;
+    width: 100%;
     text-align: left;
     font-size: 30px;
-    display: block;
-    flex-grow: 2;
-    width: 100%;
-    margin-left: 1em;
 }
 .places article {
+    display: inline-block;
     width: 390px;
     padding: 20px;
     margin: 20px;
@@ -21,5 +23,4 @@
 .places article h2 {
     font-size: 30px;
     text-align: center;
-    margin-top: 0.175em;
 }

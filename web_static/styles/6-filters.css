@@ -80,6 +80,8 @@
 }
 
 .locations:hover .popover,
-.amenities:hover .popover {
+.amenities:hover .popover,
+.locations .popover:hover .popover,
+.amenities .popover:hover .popover {
     display: block;
 }
